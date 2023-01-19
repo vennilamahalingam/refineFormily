@@ -9,28 +9,14 @@ import {  FormItem,
     FormButtonGroup,
     Space,
     FormStep,
-    Upload,
 } from '@formily/antd'
 import { createForm } from '@formily/core'
 import { FormProvider, FormConsumer, createSchemaField } from '@formily/react'
 import { Button } from 'antd';
 import { ICategory, IPost, IUser } from "interface";
 import { useForm, useSelect} from "@pankod/refine-antd";
-import { UploadOutlined } from '@ant-design/icons';
 
-const UploadImage = (props: any) => {
-  return (
-    <Upload
-      {...props}
-      action="https://api.fake-rest.refine.dev/images"
-      headers={{
-        authorization: 'authorization-text',
-      }}
-    >
-  <Button icon={<UploadOutlined />}>Upload image</Button>
-</Upload>
-  )
-}
+
 const SchemaField = createSchemaField({
     components: {
         FormItem,
@@ -42,7 +28,6 @@ const SchemaField = createSchemaField({
         Radio,
         Select,
         ArrayItems,
-        UploadImage,
     },
   })
   
@@ -141,18 +126,6 @@ export const PostCreate: React.FC = () => {
                         name: 'content',
                     },
                     required: true,
-                  },
-                  image: {
-                    type: 'array',
-                    title: 'Image',
-                    required: true,
-                    'x-decorator': 'FormItem',
-                    'x-component': 'UploadImage',
-                    'x-decorator-props':{
-                      colon: false,
-                      labelWidth: 100,
-                      labelAlign: "left"
-                   },
                   },
                   hit: {
                     type: 'string',
