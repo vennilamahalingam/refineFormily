@@ -31,7 +31,7 @@ const SchemaField = createSchemaField({
   })
   
 export const PostEdit: React.FC = () => {
-    const {formProps, onFinish, redirect, queryResult} = useForm<IPost>({
+    const {formProps, onFinish, redirect} = useForm<IPost>({
         redirect: false,
     });
     const form = createForm(formProps);
