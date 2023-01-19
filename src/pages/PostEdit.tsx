@@ -120,7 +120,6 @@ export const PostEdit: React.FC = () => {
                         labelAlign: "left"
                      },
                      'x-component-props': {
-                        placeholder:"text",
                         labelWidth: 200,
                         name: 'content',
                     },
