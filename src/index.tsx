@@ -4,6 +4,8 @@ import { createRoot } from "react-dom/client";
 import reportWebVitals from "./reportWebVitals";
 import App from "./App";
 
+import '../node_modules/@formily/antd/dist/antd.css';
+
 const container = document.getElementById("root") as HTMLElement;
 const root = createRoot(container);
 

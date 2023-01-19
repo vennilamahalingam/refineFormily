@@ -12,6 +12,9 @@ import "@pankod/refine-antd/dist/reset.css";
 import dataProvider from "@pankod/refine-simple-rest";
 import { AntdInferencer } from "@pankod/refine-inferencer/antd";
 import routerProvider from "@pankod/refine-react-router-v6";
+import { PostCreate } from "pages/PostCreate";
+import { PostEdit} from "pages/PostEdit";
+import { PostList } from "pages/PostList";
 
 function App() {
   return (
@@ -24,10 +27,10 @@ function App() {
       resources={[
         {
           name: "posts",
-          list: AntdInferencer,
-          edit: AntdInferencer,
+          list: PostList,
+          edit: PostEdit,
           show: AntdInferencer,
-          create: AntdInferencer,
+          create: PostCreate,
           canDelete: true,
         },
       ]}
