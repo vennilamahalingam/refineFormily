@@ -53,7 +53,6 @@ export const PostEdit: React.FC = () => {
     const { selectProps: languageSelectProps } = useSelect<IUser>({
       resource: "languages",
   });
-
     const handleSubmit = async (formValues: {}) => {
         const response = await onFinish(formValues);
        redirect("show",response?.data?.id);
@@ -156,6 +155,7 @@ export const PostEdit: React.FC = () => {
                             type: 'string',
                             title: 'id',
                             required: true,
+                            enum: categorySelectProps?.options,
                             'x-decorator': 'FormItem',
                             'x-component': 'Select',  
                             'x-decorator-props':{
@@ -166,7 +166,6 @@ export const PostEdit: React.FC = () => {
                                 labelAlign: "left"
                             },
                             'x-component-props': {
-                            ...categorySelectProps,
                             name: "id",
                         },
                             
@@ -182,6 +181,7 @@ export const PostEdit: React.FC = () => {
                             required: true,
                             'x-decorator': 'FormItem',
                             'x-component': 'Select',  
+                            enum: useSelectProps?.options,
                             'x-decorator-props':{
                                 colon: false,
                                 asterisk: true,
@@ -190,7 +190,6 @@ export const PostEdit: React.FC = () => {
                                 labelAlign: "left"
                             },
                             'x-component-props': {
-                            ...useSelectProps,
                             name: "id",
                         },
                             
@@ -220,11 +219,12 @@ export const PostEdit: React.FC = () => {
                                   type: 'string',
                                   'x-decorator': 'FormItem',
                                   'x-component': 'Select',
+                                  enum: tagSelectProps?.options, 
+
                                   'x-component-props': {
                                     style: {
                                       width: 500,
                                     },
-                                    ...tagSelectProps,
                                     defaultValue: ArrayItems.useRecord,
                                   },
                                 },
@@ -294,7 +294,8 @@ export const PostEdit: React.FC = () => {
                         title: 'id',
                         required: true,
                         'x-decorator': 'FormItem',
-                        'x-component': 'Select',  
+                        'x-component': 'Select', 
+                        enum: languageSelectProps?.options, 
                         'x-decorator-props':{
                             colon: false,
                             asterisk: true,
@@ -302,9 +303,6 @@ export const PostEdit: React.FC = () => {
                             labelWidth: 100,
                             labelAlign: "left"
                         },
-                        'x-component-props': {
-                        ...languageSelectProps,
-                    },
                 }
                 },
               },

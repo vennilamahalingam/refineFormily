@@ -159,6 +159,7 @@ export const PostCreate: React.FC = () => {
                             required: true,
                             'x-decorator': 'FormItem',
                             'x-component': 'Select',  
+                            enum: categorySelectProps?.options,
                             'x-decorator-props':{
                                 colon: false,
                                 asterisk: true,
@@ -167,7 +168,6 @@ export const PostCreate: React.FC = () => {
                                 labelAlign: "left"
                             },
                             'x-component-props': {
-                            ...categorySelectProps,
                             name: "id",
                         },
                             
@@ -182,7 +182,8 @@ export const PostCreate: React.FC = () => {
                             title: 'id',
                             required: true,
                             'x-decorator': 'FormItem',
-                            'x-component': 'Select',  
+                            'x-component': 'Select', 
+                            enum: useSelectProps?.options, 
                             'x-decorator-props':{
                                 colon: false,
                                 asterisk: true,
@@ -191,7 +192,6 @@ export const PostCreate: React.FC = () => {
                                 labelAlign: "left"
                             },
                             'x-component-props': {
-                            ...useSelectProps,
                             name: "id",
                         },
                             
@@ -224,11 +224,11 @@ export const PostCreate: React.FC = () => {
                                   type: 'string',
                                   'x-decorator': 'FormItem',
                                   'x-component': 'Select',
+                                  enum: tagSelectProps?.options, 
                                   'x-component-props': {
                                     style: {
                                       width: 500,
                                     },
-                                    ...tagSelectProps,
                                     defaultValue: ArrayItems.useRecord,
 
                                   },
@@ -299,7 +299,8 @@ export const PostCreate: React.FC = () => {
                         title: 'id',
                         required: true,
                         'x-decorator': 'FormItem',
-                        'x-component': 'Select',  
+                        'x-component': 'Select',
+                        enum: languageSelectProps?.options,   
                         'x-decorator-props':{
                             colon: false,
                             asterisk: true,
@@ -307,10 +308,6 @@ export const PostCreate: React.FC = () => {
                             labelWidth: 100,
                             labelAlign: "left"
                         },
-                        'x-component-props': {
-                        
-                        ...languageSelectProps,
-                    },
                 }
                 },
               },
