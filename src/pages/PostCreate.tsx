@@ -9,14 +9,15 @@ import {  FormItem,
     FormButtonGroup,
     Space,
     FormStep,
-    PreviewText
+    PreviewText,
+    Upload,
 } from '@formily/antd'
 import { createForm } from '@formily/core'
 import { FormProvider, FormConsumer, createSchemaField } from '@formily/react'
 import { Button } from 'antd';
 import { ICategory, IPost, IUser } from "interface";
 import { useForm, useSelect} from "@pankod/refine-antd";
-
+import { UploadOutlined } from '@ant-design/icons'
 
 const SchemaField = createSchemaField({
     components: {
@@ -30,6 +31,7 @@ const SchemaField = createSchemaField({
         Radio,
         Select,
         ArrayItems,
+        Upload,
     },
   })
   
@@ -45,6 +47,19 @@ export const PostCreate: React.FC = () => {
         const response = await onFinish(formValues);
         redirect("show", response?.data?.id);
     };
+    const normalUpload = (props: {}) => {
+      return (
+        <Upload
+          {...props}
+          action="https://api.fake-rest.refine.dev/images"
+          headers={{
+            authorization: 'authorization-text',
+          }}
+        >
+          <Button icon={<UploadOutlined />}>Upload files</Button>
+        </Upload>
+      )
+    }
     const { selectProps: categorySelectProps } = useSelect<ICategory>({
         resource: "categories",
         pagination: { current: 1, pageSize: 50 },
@@ -80,6 +95,18 @@ export const PostCreate: React.FC = () => {
                 type: 'void',
                 'x-component': 'FormStep.StepPane',
                 properties: {
+                  fileUp: {
+                    type: 'array',
+                    title: 'File',
+                    required: true,
+                    'x-decorator': 'FormItem',
+                    'x-component': normalUpload,
+                    'x-decorator-props':{
+                      colon: false,
+                      labelWidth: 100,
+                      labelAlign: "left",
+                   },
+                  },
                   title: {
                     type: 'string',
                     title: "Title",
