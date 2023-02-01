@@ -9,7 +9,7 @@ import {  FormItem,
     FormButtonGroup,
     Space,
     FormStep,
-    PreviewText,
+    PreviewText, 
     Upload,
 } from '@formily/antd'
 import { createForm } from '@formily/core'
@@ -17,7 +17,8 @@ import { FormProvider, FormConsumer, createSchemaField } from '@formily/react'
 import { Button } from 'antd';
 import { ICategory, IPost, IUser } from "interface";
 import { useForm, useSelect} from "@pankod/refine-antd";
-import { UploadOutlined } from '@ant-design/icons'
+import { UploadOutlined } from '@ant-design/icons';
+import { addPreview } from "utils";
 
 const SchemaField = createSchemaField({
     components: {
@@ -47,6 +48,7 @@ export const PostCreate: React.FC = () => {
         const response = await onFinish(formValues);
         redirect("show", response?.data?.id);
     };
+    
     const normalUpload = (props: {}) => {
       return (
         <Upload
@@ -120,7 +122,6 @@ export const PostCreate: React.FC = () => {
                      },
                      'x-component-props': {
                         name: 'title',
-                        
                     }
                   },
                   slug: {
@@ -154,6 +155,7 @@ export const PostCreate: React.FC = () => {
                         labelWidth: 200,
                         name: 'content',
                     },
+
                     required: true,
                   },
                   hit: {
@@ -162,6 +164,7 @@ export const PostCreate: React.FC = () => {
                     required: true,
                     'x-decorator': 'FormItem',
                     'x-component': 'Input',
+                    
                     'x-decorator-props':{
                         colon: false,
                         labelWidth: 100,
@@ -240,6 +243,7 @@ export const PostCreate: React.FC = () => {
                          },
                          'x-component-props': {
                             size: "large",
+                            disabled: true,
                         },
                         maxItems: 3,
                         title: 'Tags',
@@ -249,6 +253,7 @@ export const PostCreate: React.FC = () => {
                             space: {
                               type: 'void',
                               'x-component': 'Space',
+                              
                               properties: {
                                 tags: {
                                   type: 'string',
@@ -266,7 +271,7 @@ export const PostCreate: React.FC = () => {
                                 remove: {
                                   type: 'void',
                                   'x-decorator': 'FormItem',
-                                  'x-component': 'ArrayItems.Remove',
+                                  'x-component': 'ArrayItems.Remove',  
                                 },
                               },
                             },
@@ -281,7 +286,7 @@ export const PostCreate: React.FC = () => {
                                 style: {
                                 color: '#8d8b8b',
                                 width: 500
-                                },
+                                }
                             },
                           },
                         },
@@ -295,6 +300,7 @@ export const PostCreate: React.FC = () => {
                   status: {
                     type: 'string',
                     title: 'Status',
+                    
                     required: true,
                     'x-decorator': 'FormItem',
                     'x-component': 'Input',
@@ -311,6 +317,7 @@ export const PostCreate: React.FC = () => {
                   status_color: {
                     type: 'string',
                     title: 'Status Color',
+                    
                     required: true,
                     'x-decorator': 'FormItem',
                     'x-component': 'Input',
@@ -327,219 +334,10 @@ export const PostCreate: React.FC = () => {
                   language: {
                     type: 'string',
                         title: 'id',
+                    
                         required: true,
                         'x-decorator': 'FormItem',
                         'x-component': 'Select',
-                        enum: languageSelectProps?.options,   
-                        'x-decorator-props':{
-                            colon: false,
-                            asterisk: true,
-                            label: "Language",        
-                            labelWidth: 100,
-                            labelAlign: "left"
-                        },
-                }
-                },
-              },
-              step4: {
-                type: 'void',
-                'x-component': 'FormStep.StepPane',
-                properties: {
-                  title: {
-                    type: 'string',
-                    title: "Title",
-                    required: true,
-                    'x-decorator': 'FormItem',
-                    'x-component': 'PreviewText.Input',
-                    'x-decorator-props':{
-                        colon: false,
-                        labelWidth: 100,
-                        labelAlign: "left",
-                     },
-                     'x-component-props': {
-                        name: 'title',
-                        value: "title",
-                        defaultValue: "d",
-                    }
-                  },
-                  slug: {
-                    type: 'string',
-                    title: 'Slug',
-                    required: true,
-                    'x-decorator': 'FormItem',
-                    'x-component': 'PreviewText.Input',
-                    'x-decorator-props':{
-                        colon: false,
-                        labelWidth: 100,
-                        labelAlign: "left"
-                     },
-                     'x-component-props': {
-                        labelWidth: 200,
-                        name:'slug',
-                    }
-
-                  },
-                  content: {
-                    type: 'string',
-                    title: 'Content',
-                    'x-decorator': 'FormItem',
-                    'x-component': 'PreviewText.Input',
-                    'x-decorator-props':{
-                        colon: false,
-                        labelWidth: 100,
-                        labelAlign: "left"
-                     },
-                     'x-component-props': {
-                        labelWidth: 200,
-                        name: 'content',
-                    },
-                    required: true,
-                  },
-                  hit: {
-                    type: 'string',
-                    title: 'Hit',
-                    required: true,
-                    'x-decorator': 'FormItem',
-                    'x-component': 'PreviewText.Input',
-                    'x-decorator-props':{
-                        colon: false,
-                        labelWidth: 100,
-                        labelAlign: "left"
-                     },
-                     'x-component-props': {
-                        labelWidth: 200,
-                        name: 'hit'
-                    },
-
-                  },
-                  category: {
-                    type: 'object',
-                    properties:{
-                        id:{
-                        type: 'string',
-                        title: 'id',
-                        required: true,
-                        'x-decorator': 'FormItem',
-                        'x-component': 'PreviewText.Select',
-                        enum: categorySelectProps?.options,
-                        'x-decorator-props':{
-                            colon: false,
-                            asterisk: true,
-                            label: "Category",        
-                            labelWidth: 100,
-                            labelAlign: "left"
-                        },
-                        'x-component-props': {
-                        name: "id",
-                    },
-                        
-                    },
-                }
-                },
-                user: {
-                    type: 'object',
-                    properties:{
-                        id:{
-                        type: 'string',
-                        title: 'id',
-                        required: true,
-                        'x-decorator': 'FormItem',
-                        'x-component': 'PreviewText.Select',
-                        enum: useSelectProps?.options, 
-                        'x-decorator-props':{
-                            colon: false,
-                            asterisk: true,
-                            label: "User",
-                            labelWidth: 100,
-                            labelAlign: "left"
-                        },
-                        'x-component-props': {
-                        name: "id",
-                    },
-                        
-                    },
-                }
-                },
-                tags: {
-                    type: 'array',
-                    'x-component': 'ArrayItems',
-                    'x-decorator': 'FormItem',
-                    required: true,
-                    'x-decorator-props':{
-                        colon: false,
-                        labelWidth: 100,
-                        labelAlign: "left"
-                     },
-                     'x-component-props': {
-                        size: "large",
-                    },
-                    maxItems: 3,
-                    title: 'Tags',
-                    items: {
-                      type: 'void',
-                      properties: {
-                        space: {
-                          type: 'void',
-                          'x-component': 'Space',
-                          properties: {
-                            tags: {
-                              type: 'string',
-                              'x-decorator': 'FormItem',
-                              'x-component': 'PreviewText.Select',
-
-                              enum: tagSelectProps?.options, 
-                              'x-component-props': {
-                                style: {
-                                  width: 500,
-                                },
-                                defaultValue: ArrayItems.useRecord,
-
-                              },
-                            },
-                            
-                          },
-                        },
-                      },
-                    },
-                  },
-                  status: {
-                    type: 'string',
-                    title: 'Status',
-                    required: true,
-                    'x-decorator': 'FormItem',
-                    'x-component': 'PreviewText.Input',
-                    'x-decorator-props':{
-                        colon: false,
-                        asterisk: true,
-                        labelWidth: 100,
-                        labelAlign: "left"
-                     },
-                     'x-component-props': {
-                        labelWidth: 200,
-                    }
-                  },
-                  status_color: {
-                    type: 'string',
-                    title: 'Status Color',
-                    required: true,
-                    'x-decorator': 'FormItem',
-                    'x-component': 'PreviewText.Input',
-                    'x-decorator-props':{
-                        colon: false,
-                        asterisk: true,
-                        labelWidth: 100,
-                        labelAlign: "left"
-                     },
-                     'x-component-props': {
-                        labelWidth: 200,
-                    }
-                  },
-                  language: {
-                    type: 'string',
-                        title: 'id',
-                        required: true,
-                        'x-decorator': 'FormItem',
-                        'x-component': 'PreviewText.Select',
                         enum: languageSelectProps?.options,   
                         'x-decorator-props':{
                             colon: false,
@@ -555,9 +353,9 @@ export const PostCreate: React.FC = () => {
           },
         },
       }
+      addPreview(schema);
       
     return (
-        
         <FormProvider form={form}>
           <SchemaField schema={schema} scope={{ formStep }} />
           <FormConsumer>
@@ -574,7 +372,8 @@ export const PostCreate: React.FC = () => {
                 {formStep.current !== 3 ?<Button
                   disabled={!formStep.allowNext}
                   onClick={() => {
-                    formStep.next()
+                    formStep.next();
+
                   }}
                 >
                   {formStep.current === 2 ? "Preview Information" : "Next step"}
