@@ -15,6 +15,7 @@ import routerProvider from "@pankod/refine-react-router-v6";
 import { PostCreate } from "pages/PostCreate";
 import { PostEdit} from "pages/PostEdit";
 import { PostList } from "pages/PostList";
+import Jsonpdf from "pages/Jsonpdf";
 
 function App() {
   return (
@@ -33,6 +34,10 @@ function App() {
           create: PostCreate,
           canDelete: true,
         },
+        {
+          name: 'report',
+          list: Jsonpdf,
+        }
       ]}
       routerProvider={routerProvider}
     />
