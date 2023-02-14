@@ -17,7 +17,7 @@ const Jsonpdf = () => {
         
       };
     const bearerToken = 'test_eyJhbGciOiJFUzUxMiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiI1NTE4NTkwNjY4NjM1OTc0OTciLCJhdWQiOiJjYXJib25lIiwiZXhwIjoyMzM3NTAxOTI4LCJkYXRhIjp7ImlkQWNjb3VudCI6IjU1MTg1OTA2Njg2MzU5NzQ5NyJ9fQ.AXRFa93a8LGEu05IX9rHwZrSrBUJz8gNwvJqRIm8GtF5bXcx-JB_0BKrgcEsdQUCF3BJppEeYbciqXYPR15qdZT1AEJ1WzG8oOtRFUSJfK-6Y9-f_sXNHDQxFOpDGFrfBZNt_IYOnT3wGx8MY--oEuX2SUskVfzQ0H1hmLK6aT-B5Bvr';
-    const templateId = '33c9e421357523de88b00067b19f146e207fff622fafbf694f82fadf552eee39';
+    const templateId = '78ac9638b03de442644e12b778354f79bcc1c4e5264352566822e0a43b0e61d5';
   
     const generateCarbonePdf = () => {
       const requestOptions = {
